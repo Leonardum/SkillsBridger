@@ -1,0 +1,3135 @@
+/* 
+CSS file, partly based on the Materialize framework:
+ * Materialize v0.97.7 (http://materializecss.com)
+ * Copyright 2014-2015 Materialize
+ * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
+
+Table of contents:
+1. Computer- & laptop design
+    1.1.  Body and general tags
+    1.2.  Home page and hover drop-down menus
+	1.3.  Terms of service page
+	1.4.  Main dashboard elements
+	1.5.  Event information overview box
+	1.6.  Large event overview layout
+    1.7.  Other special div tags
+    1.8.  Buttons
+	1.9.  Form elements
+    1.10. Messages and text links
+	1.11. Tables
+2. Tablet design
+	2.1.  General tags
+	2.2.  Home page
+    2.3.  Main dashboard elements
+	2.4.  Other special div tags
+    2.5.  Event information overview box
+	2.6.  Buttons
+3. Smart phone design
+*/
+
+div.jobType {
+	position: relative;
+	float: left;
+	width: 30%;
+	height: 10rem;
+	margin: 2.5% calc(10%/6) 0 calc(10%/6);
+	background-color: rgba(191, 191, 208, 1);
+}
+
+div.jobTypeHelp {
+	position: absolute;
+	display: table;
+	width: 100%;
+	height: 10rem;
+	text-align: center;
+	padding: 0.5rem;
+}
+
+.jobTypeHelp p {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* Setting all HTML elements to have their box-sizing property set to border-box ensures that the padding and border are included in the total width and height of the elements. */
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+    
+/* ------------------------------------------------------------------------------
+1. Computer- & laptop design
+------------------------------------------------------------------------------ */
+
+/* Preparing the width of elements within one row for screens which display a minimum of 768 pixels in the width (every device larger than a tablet). The screen width (of 100%) is divided into 20 colums. Each element in a row should then take one of the col classes below. If an element takes class "col-3", it means it is three colums wide. Therefore the sum of all elements in a row should always be 20. If it is less, there will be open space, if it is more, there will be a horizontal scroll bar. */
+@media only screen and (min-width: 993px) {
+    [class*="col-"] {
+		position: relative;
+		float: left;
+    }
+    
+    [class*='col-']:last-of-type {
+        padding-right: 0;
+    }
+    
+    .col-1 {width: 5%;}
+    .col-2 {width: 10%;}
+    .col-3 {width: 15%;}
+    .col-4 {width: 20%;}
+    .col-5 {width: 25%;}
+    .col-6 {width: 30%;}
+    .col-7 {width: 35%;}
+    .col-8 {width: 40%;}
+    .col-9 {width: 45%;}
+    .col-10 {width: 50%;}
+    .col-11 {width: 55%;}
+    .col-12 {width: 60%;}
+    .col-13 {width: 65%;}
+    .col-14 {width: 70%;}
+    .col-15 {width: 75%;}
+    .col-16 {width: 80%;}
+    .col-17 {width: 85%;}
+    .col-18 {width: 90%;}
+    .col-19 {width: 95%;}
+    .col-20 {width: 100%;}
+}
+
+/* The wrapper defined below here is by default 100% the hight as the viewport and 100% the width of the viewport. However, it will just extend further down if the content stretches beyond these measurements.
+Since a percentage measurement sizes all elements to the given percentage of the containing block, I can now express the measurements of every content block as a percentage of the viewport and the measurements of the content blocks within as a percentage of the containing percentage of the viewport. If I exceed a total of 100% in height, the screen will get a vertical scroll bar. If I exceed 100% in width, I will get a horizontal scroll bar (which should definitely be avoided at all times)!
+The huge advantage of this is that it can make all the elements both proportionate and responsive corresponding to the viewport size, as long as they can be consistently expressed in percentages! Another huge advantage is that you can narrow the width of all your content on the page very easily by reducing the width of the wrapper by a certain percentage. If you then want to centre the content, simply add a left property for half of this percentage [e.g.: if you reduced the width of the wrapper by 20% (so set to 80%), then you add a left property of 10% to centre it all]. */
+#wrapper {
+    position:absolute;
+    min-height: 100%;
+    max-width: 100%;
+	height: 100%;
+    width: 100%;
+}
+
+#wrapper:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.row {
+    width:100%;
+    position:relative;
+    *zoom: 1; /* For IE 6/7 only: Include this rule to trigger hasLayout and contain floats. */
+}
+
+/* The following pseudo classes are explained in: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.1.  Body and general tags
+------------------------------------------------------------------------------ */
+body {
+	margin: 0;
+    padding: 0;
+	background-color: rgba(231, 233, 236, 1);
+}
+
+h1 {
+    color: rgba(59, 161, 219, 1);
+    font-size: 25px;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: rgba(0, 0, 0, 1);
+    font-size: 18px;
+    margin: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+a.disabled {
+	cursor: default;
+    pointer-events: none;
+}
+
+/* One can change the bullets inside a list by declaring the list-style-type. The default value "list-style-type: disc" is not shown, once you change the display value of 'li' to anything else but 'list-item'. To make sure all the bullets in a list are shown properly, you can further declare:
+	list-style-position: inside;
+*/
+ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* In order to have lists display inline next to each other (beneficial for creating navigation menus) we use the CSS properties below. However in case you need a 'standard' list, you can override these properties locally by setting the following property and value:
+	display:list-item;
+*/
+li {
+	display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.2.  Home page and hover drop-down menus
+------------------------------------------------------------------------------ */
+
+#header {
+	position: relative;
+    width: 100%;
+    height: 8%;
+	background-color: rgba(0, 0, 0, 0);
+    display: block;
+}
+
+#headerImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Set up proportionate scaling compared to the containing block, which is in this case the wrapper and the wrapper is 100% the height and width of the viewport. */
+    width: 100%;
+    height: 100%;
+    /* Put the image in the background. A z-index only works on positioned elements (position:absolute, position:relative, or position:fixed). */
+    z-index: -1;
+}
+
+#logo {
+    position: relative;
+    margin: 0.75% 0% 0% 3%;
+    float: left;
+	height: 85%;
+}
+
+#logo img {
+    height: 100%;
+}
+
+#navbar {
+    position: relative;
+    height: 100%;
+    margin-left: 2%;
+    display: inline-block;
+    float: left;
+}
+
+/* The dropdown class should be applied on an element (div, span, li, ul) containing a) the dropdown button, b) the dropdown content div, c) the dropdown links (which could or could not be in a list structure) and d) the divider class, which is used to seperate the dropdown content into logical blocks. */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+
+/* The div containing all the elements which should be shown when hovered over or clicked on the dropdown button. The positioning is absolute, which makes it appear at the bottom of the dropdown element (unless top or bottom values are set) as long as it is placed under the triggering dropdown button. Left and right values can be used in order to further position the dropdown content, but beware: all relative values will refer to the parent element, which is the dropdown and since dropdown has no fixed width, the width is determined by the only visible element placed in it: the dropdown button or the dropdown image. Since the buttons' width is setermined by the text inside, a general value for left or right would make no sense. */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 300px; /* To make sure child elements "have some space". */
+    background-color: rgba(191, 191, 208, 1);
+	-webkit-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+    z-index: 1; /* To make sure it is shown over the other content. */
+}
+
+/* The dropdown links, which will redirect you to another page when clicked. If their display is not set to block, then it will inherit the display of the parent, which has a display of "none". Even when the display of the parent changes, this doesn't change the display value of the kids, so therefore the display should be specified beforehand.
+Moreover, the "a" tag is an inline level element. Inline elements do not start on a new line and only take up as much width as necessary, whereas block-level elements always start on a new line and take up the full width available (stretches out to the left and right as far as it can). So in order to make the entire content of the <li> item a link, the a tags need to be displayed as block elements, not as an inline element. Inline-block elements are basically inline elements of which the width and the height CAN be set (unlike normal inline elements). Therefore, the same effect could be reached with inline-block value of the display property, but it would require the exact width and height to be set to fill up an entire <li> item. */
+.dropdown-content a {
+    display: block;
+    padding: 5%;
+}
+
+/* The divider's display should also be set, just like the dropdown links' display value. */
+.divider {
+	display: block;
+	width: 100%;
+	height: 1px;
+	margin: 2% 0;
+	background-color: rgba(231, 233, 236, 1);
+}
+
+/* CSS logic: if a link, which is the child of "dropdown-content" is hovered over, apply the following styling: */
+.dropdown-content a:hover {
+    background-color: rgba(233, 72, 59, 1);
+	color: rgba(255, 255, 255, 1) !important;
+}
+
+/* CSS logic: if the "dropdown" is hovered over, apply the following styling to the "dropdown-content", which is a child of the hovered over "dropdown": */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* CSS logic: if the "dropdown" is hovered over, apply the following styling to the "drop-button", which is a child of the hovered over "dropdown": */
+.dropdown:hover .drop-button {
+    background-color: rgba(24, 163, 164, 1);
+}
+
+.homepageTitle {
+	position: absolute;
+	width: 100%;
+	top: 10%;
+	text-align: center;
+	color: rgba(29, 51, 92, 1);
+	font-size: 50px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.homepageSubTitle {
+	position: absolute;
+	width: 100%;
+	top: 32%;
+	text-align: center;
+	color: rgba(29, 51, 92, 1);
+	/* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+.homeContent {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+}
+
+.valuePropositionBox {
+	height:600px;
+	padding: 10px;
+}
+
+.valuePropositionTitle {
+    text-align: center;
+    font-size: 26px;
+	font-weight: 700;
+	letter-spacing: 1px;
+    margin: 70px 0 30px 0;
+}
+
+.valuePropositionRow {
+    height: 200px;
+}
+
+.valuePropSubRow {
+	position: relative;
+	float: left;
+	width: 50%;
+}
+
+.homePageIconCol {
+	position: relative;
+	float: left;
+	width: 35%;
+}
+
+.homePageIconFrame {
+	position: relative;
+	max-width: 80px;
+	height: 80px;
+	top: 60px;
+	left: 20%;
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .homePageIconFrame {
+		width: 50px;
+		height: 50px;
+		top: 75px;
+	}
+}
+
+.homePageIcon {
+	position: absolute;
+	height: 100%;
+	top: 0;
+}
+
+.homePageTextCol {
+	position: relative;
+	float: left;
+	width: 60%;
+	margin-left: 5%;
+}
+
+.homeIconTextFrame {
+	display: table;
+	position: absolute;
+	width: 100%;
+	height: 200px;
+	vertical-align: middle;
+}
+
+.homeIconTextDiv {
+	display: table-cell;
+	position: relative;
+	height: 200px;
+	padding-right: 5%;
+	vertical-align: middle;
+}
+
+.callToActionBox {
+	height:600px;
+	padding: 10px;
+}
+
+.callToActionImg {
+	height: 300px;
+}
+
+.videoRow {
+	height: auto;
+	margin-bottom: 100px;
+}
+
+.homeVideo {
+	width: 50%;
+	height: auto;
+	margin: 25px 0 0 25%;
+}
+
+.partners {
+	position: relative;
+	z-index: 1;
+	padding: 0 0 50px 0;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+/* The blue bands on the partner div tag are made with the before and after pseude selectors. */
+.partners:before,
+.partners:after {
+	content: '';
+	display: block;
+	z-index: 0;
+	position: absolute;
+	width: 100%;
+	height: 120px;
+	left: 0;
+	right: 0;
+	background: rgba(59, 161, 219, 1);
+}
+
+.partners:before {
+	top: 0;
+	transform: skewY(3deg);
+	transform-origin: 100% 0;
+}
+
+.partners:after {
+	bottom: 0;
+	transform: skewY(-3deg);
+	transform-origin: 100%;
+}
+
+.partners p {
+	position: relative;
+	z-index: 1;
+	margin-bottom: 50px;
+	font-size: 32px;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+}
+
+.partnerLogoContainer {
+	width: 80%;
+	margin: 40px auto;
+	text-align: center;
+}
+
+.partnerLogo {
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	margin: 10px;
+}
+
+.partnerLogoFrame {
+	display: table;
+	position: absolute;
+	height: 150px;
+	vertical-align: middle;
+}
+
+.partnerLogo a {
+	display: table-cell;
+	position: relative;
+	height: 150px;
+	vertical-align: middle;
+}
+
+.partnerLogo img {
+	max-width: 150px;
+	max-height: 150px;
+}
+
+.inMedia {
+	position: relative;
+	z-index: 1;
+	background-color: rgba(231, 233, 236, 1);
+}
+
+/* The blue bands on the partner div tag are made with the before and after pseude selectors. */
+.inMedia:before {
+	content: '';
+	display: block;
+	z-index: 0;
+	position: absolute;
+	width: 100%;
+	height: 90px;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(59, 161, 219, 1);
+	transform: skewY(-3deg);
+	transform-origin: 0%;
+}
+
+.inMedia p {
+	position: relative;
+	z-index: 2;
+	margin-top: -35px;
+	font-size: 32px;
+	color: rgba(255, 255, 255, 1);
+}
+
+.inMediaLogoContainer {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.footer {
+	background-color: rgba(51, 51, 51, 1);
+}
+
+.footer p {
+	padding: 15px 0;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.3.  Terms of service page
+------------------------------------------------------------------------------ */
+
+.termsContent {
+	margin-left: 50px;
+}
+
+.termsTitle {
+	margin: 30px 0;
+	text-align: center;
+}
+
+.termsSubTitle {
+	margin: 40px 0 20px 0;
+}
+
+.termsList {
+    font-size: 18px;
+	display: list-item;
+}
+
+.termsLevelOne {
+	margin: 0 0 1rem 1rem;
+	padding-top: 0.5rem;
+}
+
+.termsLevelTwo {
+	margin: 0 0 1rem 2rem;
+	padding-top: 0.5rem;
+}
+
+.termsLevelThree {
+	margin: 0 0 1rem 3rem;
+	padding-top: 0.5rem;
+}
+
+.termsLevelFour {
+	margin: 0 0 1rem 4rem;
+	padding-top: 0.5rem;
+}
+
+.termsLevelFive {
+	margin: 0 0 1rem 5rem;
+	padding-top: 0.5rem;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.4.  Main dashboard elements
+------------------------------------------------------------------------------ */
+
+div.left-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(51, 51, 51, 1);
+	z-index: -2; /* To make sure dropdown menus are covering this sidebar. */
+	overflow: auto;
+}
+
+div.left-sidebar.animation {
+	-webkit-animation-name: slideOut;
+    -webkit-animation-iteration-count: once;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-duration: 0.5s;
+	-webkit-animation-fill-mode: forwards;
+    animation-name: slideOut;
+    animation-iteration-count: once;
+    animation-timing-function: ease-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes slideOut {
+    0% {left: -20%;}
+    100% {left: 0;}
+}
+
+@-webkit-keyframes slideOut {
+    0% {left: -20%;}
+    100% {left: 0;}
+}
+
+@-moz-keyframes slideOut {
+    0% {left: -20%;}
+    100% {left: 0;}
+}
+
+div.left-sidebar::-webkit-scrollbar {
+    width: 12px;
+}
+
+div.left-sidebar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 5px;
+}
+
+div.left-sidebar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+div.logoBackground {
+	height: 70px;
+	padding-top: 3px;
+}
+
+div.studentBackground {
+	background-color: rgba(59, 161, 219, 1);
+}
+
+div.organisationBackground {
+	background-color: rgba(24, 163, 164, 1);
+}
+
+div.businessBackground {
+	background-color: rgba(29, 51, 92, 1);
+}
+
+div.sbLogoContainer {
+	position: relative;
+	margin: 0 auto;
+	width: 145px;
+	height: 63px;
+}
+
+.sbLogo {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+	
+.sideBarHider {
+	display: none;
+}
+
+p.userName {
+    margin: 1rem 0 0 0;
+	color: rgba(255, 255, 255, 1);
+    font-size: 26px;
+	text-align: center;
+}
+
+div.profilePicture {
+	position: relative;
+	margin: 0.5rem auto 20px auto;
+	width: 200px;
+	height: 200px; /* change measurements under 1034px width. */
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1034px) {
+	div.profilePicture {
+		width: 145px;
+		height: 145px;
+	}
+}
+
+img.profilePicture {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+button.profilePicture {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background-color: rgba(113, 116, 120, 0.7);
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	cursor: pointer;
+}
+
+button.profilePicture:hover {
+    background-color: rgba(231, 48, 35, 0.7);
+}
+
+div.middle-column {
+	margin-left: 20%;
+	z-index: -1; /* To make sure the content is clickable (since it also has a z-index of -1. */
+}
+
+div.navigation {
+	position: fixed;
+	height: 70px;
+	width: 80%; /* width has to be set, since fixed elements are anchored to the browser window, not to their parent elements. So it doesn't adopt any width automatically and when set will be in proportion towards the window. */
+	background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 2px 7px 5px 0px rgba(170,170,170,1);
+	-moz-box-shadow: 2px 7px 5px 0px rgba(170,170,170,1);
+	box-shadow: 2px 7px 5px 0px rgba(170,170,170,1);
+	padding: 15px 0;
+}
+
+#roleList {
+	margin-left: -5px;
+}
+
+img.menuBars {
+	float: left;
+	display: none;
+}
+
+div.management-box {
+	padding: 2px 10px 0 0;
+}
+
+img.notification {
+	margin-right: 12px;
+	height: 30px;
+}
+
+img.notification:hover {
+	cursor: pointer;
+}
+
+img.userAccount {
+	margin-right: 10px;
+	height: 30px;
+}
+
+img.userAccount:hover {
+	cursor: pointer;
+}
+
+/* Dropdown classes for the notifications and settings. */
+.management-dropdown {
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+
+.notification-dropdown-content {
+    display: none;
+    position: absolute;
+	top: 45px;
+	left: -130px;
+    min-width: 300px;
+    background-color: rgba(191, 191, 208, 1);
+	-webkit-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+/* A box with 0 width and 0 height, but with a border, makes the borders triangular as they all push for equal space:
+|-------|
+|\     /|	1. Transparent left border of 10 px width.
+| \   / |	2. Transparent right border of 10 px width.
+|  \ /  |	3. Colored bottom border, which is pushed in a triangular shape
+| 1 . 2 |	   because the left and right borders are set.
+|  / \  |
+| / 3 \ |
+|/_____\|
+
+The absolute positioning, combined with the before selector, allows to make the triangle appear at the top (same value as the border width) middle (left 'margin') of the dropdown content. */
+.notification-dropdown-content:before {
+    content:'';
+    position: absolute;
+    top: -10px;
+	left: 125px;
+    width: 0;
+    height: 0;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+	border-bottom: solid 10px rgba(191, 191, 208, 1);
+}
+
+.setting-dropdown-content {
+    display: none;
+    position: absolute;
+	top: 45px;
+	left: -130px;
+    min-width: 300px;
+    background-color: rgba(191, 191, 208, 1);
+	-webkit-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	-moz-box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+	box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.setting-dropdown-content:before {
+    content:'';
+    position: absolute;
+    top: -10px;
+	left: 160px;
+    width: 0;
+    height: 0;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+	border-bottom: solid 10px rgba(191, 191, 208, 1);
+}
+
+.notification-dropdown-content a,
+.setting-dropdown-content a {
+    display: block;
+    padding: 5%;
+}
+
+.notification-dropdown-content a:hover,
+.setting-dropdown-content a:hover {
+    background-color: rgba(233, 72, 59, 1);
+	color: rgba(255, 255, 255, 1) !important;
+}
+
+div.content {
+	/* display: -webkit-box;   OLD - iOS 6-, Safari 3.1-6 (Issues with safari) */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* Chrome & Safari */
+	display: flex;
+	flex-direction: column;
+	margin-top: 70px;
+	padding: 20px 10px 10px 10px !important;
+	z-index: -1; /* To make sure notifications and settings are covering the content. */
+}
+
+div.right-sidebar {
+	position: fixed;
+	width: 20%;
+	top: 70px;
+	bottom: 0;
+	right: 0;
+	padding: 0 10px 0 10px;
+	z-index: -2; /* To make sure notifications and settings are covering this sidebar. */
+}
+
+div.adbox {
+	position: relative;
+	width: 100%;
+	height: 150px;
+	margin: 10px 0 10px 0;
+	text-align: center;
+	line-height: 150px;
+	-webkit-box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.75);
+}
+div.adbox img {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.5.  Event information overview box
+------------------------------------------------------------------------------ */
+
+.masonry {
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+	column-gap: 1rem;
+	padding-right: 1rem;
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .masonry {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+		padding-right: 1rem;
+    }
+}
+
+.eventBox {
+	display: inline-block;
+	margin-bottom: 1rem;
+    width: 100%;
+	padding: 20px;
+    background-color: rgba(191, 191, 208, 1);
+	/* -webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75); */
+	word-wrap: break-word;
+}
+
+.eventBox p.title {
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+	font-weight: 700;
+	text-align: center;
+    color: rgba(29, 51, 92, 1);
+}
+
+.eventBox p.type {
+	margin-bottom: 0.4rem;
+	font-size: 1.2rem;
+	text-align: center;
+    color: rgba(0, 0, 0, 1);
+}
+
+.eventBox div.logoBox {
+	position: relative;
+	margin: 0 auto 0.4rem auto;
+	width: 100px;
+	height: 100px;
+}
+
+.eventBox img.logo {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.eventBox p.organiser {
+	font-size: 1rem;
+	text-align: center;
+	margin: 10px 0 5px 0;
+}
+
+.eventBox div.skillsBox {
+	margin: 0.5rem auto 0 auto;
+	padding: 5px 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.eventBox div.skillsBox p.skillAnnounce {
+	font-size: 16px;
+	text-align: center;
+	color: rgba(29, 51, 92, 1);
+}
+
+.eventBox div.skillsBox div.skillFrame {
+	margin-top: 5px;
+	padding: 5px;
+	background-color: rgba(113, 116, 120, 1);
+}
+
+.eventBox .eventBox-action {
+	position: relative;
+	padding: 5px 0;
+	background-color: inherit;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	text-align: center;
+}
+
+.attendingBox {
+	width: 100%;
+    padding: 15px 0;
+    background-color: rgba(34, 139, 34, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.eventBox div.ratingRow {
+	margin: 0 auto 0.3rem auto;
+	padding: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	text-align: center;
+}
+
+.eventBox div.ratingRow p {
+	color: rgba(29, 51, 92, 1);
+	font-size: 16px;
+	text-align: center;
+}
+
+.eventBox div.skillsBox p.skill {
+	font-size: 17px;
+	letter-spacing: 1px;
+	text-align: center;
+	color: rgba(255, 255, 255, 1);
+}
+
+img.hider {
+	margin: 7px 0 0 49%;
+}
+
+div.hiderRow:hover {
+	cursor: pointer;
+}
+
+.eventBox div.descriptionRow {
+	margin: 0 auto 0.3rem auto;
+	padding: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.eventBox div.descriptionRow p {
+	color: rgba(29, 51, 92, 1);
+	font-size: 16px;
+	text-align: center;
+}
+
+.eventBox div.timeRow {
+	margin: 0 auto 0.5rem auto;
+	padding: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.eventBox div.timeRow p {
+	color: rgba(29, 51, 92, 1);
+	font-size: 16px;
+	text-align: center;
+}
+
+.eventBox div.addressBox {
+	margin: 0 auto 0.3rem auto;
+	padding: 10px;
+}
+
+.eventBox div.addressBox p {
+	color: rgba(29, 51, 92, 1);
+	font-size: 16px;
+}
+
+.eventBox div.sponsorsRow {
+	padding: 10px;
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	text-align: center;
+}
+
+.eventBox div.sponsorsRow p {
+	margin-bottom: 5px;
+	color: rgba(29, 51, 92, 1);
+	font-size: 16px;
+	text-align: center;
+}
+
+div.sponsorSmallLogo {
+	position: relative;
+	display: inline-block;
+	margin: 2%;
+	width: 60px;
+	height: 60px;
+}
+
+img.sponsorSmallLogo {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.eventBox .unsubscribe {
+	position: relative;
+	padding: 5px 0;
+	background-color: inherit;
+	text-align: center;
+}
+
+.eventBox div.fullInfoRow {
+	text-align: center;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.6.  Large event overview layout
+------------------------------------------------------------------------------ */
+
+.studentEventOverview {
+	margin-bottom: 20px;
+	padding: 0 20px 0 20px !important;
+    background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.eventOverviewRow {
+	padding: 1rem 0 1rem 0;
+	word-wrap: break-word;
+}
+
+.eventOverviewRow:nth-child(even) {
+    background-color: rgba(191, 191, 208, 0.2);
+}
+
+.eventOverviewRow:last-of-type {
+	margin-bottom: 1rem;
+}
+
+.eventOverviewRow p {
+	text-align: center;
+	font-size: 1rem;
+}
+
+.eventOverviewRow p.title {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+    color: rgba(24, 163, 164, 1);
+}
+
+.eventOverviewRow p.url {
+	font-size: 0.8rem;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.7.  Other special div tags
+------------------------------------------------------------------------------ */
+
+/* Coockie warning div. */
+.cookieWarning {
+	position: fixed;
+	z-index: 3;
+	width: 100%;
+	top: 85%;
+	height: 10%;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.cookieWarning p {
+	padding-top: 1.5%;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+}
+
+.cookieAcceptButton {
+	position: absolute;
+	top: 20%;
+	right: 10%;
+	border-radius: 5px !important;
+	background-color: rgba(245, 245, 0, 1) !important;
+	color: rgba(0, 0, 0, 1) !important;
+}
+
+
+/* Student profile page picture: */
+.profilePic {
+	position: relative;
+	float: left;
+	margin: 0 2% 2% 0;
+	width: 120px;
+	height: 120px;
+    vertical-align: middle;
+}
+
+div.contentSidebar {
+	float: right !important;
+	margin-bottom: 10px;
+	padding: 5px !important;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+/* Dynamic 2 columns of which the background fills up until the bottom of the containing div, even if the inner content is unexistent. */
+.microdegree-two-col {
+	position: relative;
+	margin-bottom: 20px;
+	z-index: 1;
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.microdegree-two-col .col1 {
+	float: left;
+	width: 30%;
+}
+
+.microdegree-two-col .col2 {
+	float: left;
+	width: 70%;
+	padding: 0 20px 0 20px;
+}
+
+.microdegree-two-col:before,
+.microdegree-two-col:after {
+	content: " ";
+	position: absolute;
+	height: 100%;
+	z-index: -1;
+	top: 0;
+}
+
+.microdegree-two-col:before {
+	left: 0;
+	width: 30%;
+	background: rgba(191, 191, 208, 1);
+}
+
+.microdegree-two-col:after {
+	left: 30%;
+	width: 70%;
+	background: rgba(255, 255, 255, 1);
+}
+
+img.microdegree {
+	width: 30px;
+	margin: 3px;
+}
+
+/* Dynamic 2 columns of which the background fills up until the bottom of the containing div, even if the inner content is unexistent. 
+THIS ONE IS USED FOR EVENT MANAGER. */
+.skillOverview-two-col {
+	position: relative;
+	margin-bottom: 20px;
+	z-index: 1;
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.skillOverview-two-col .col1 {
+	float: left;
+	width: 70%;
+	padding: 0 20px 0 20px;
+}
+
+.skillOverview-two-col .col2 {
+	float: left;
+	width: 30%;
+}
+
+.skillOverview-two-col:before,
+.skillOverview-two-col:after {
+	content: " ";
+	position: absolute;
+	height: 100%;
+	z-index: -1;
+	top: 0;
+}
+
+.skillOverview-two-col:before {
+	left: 0;
+	width: 70%;
+	background: rgba(255, 255, 255, 1);
+}
+
+.skillOverview-two-col:after {
+	left: 70%;
+	width: 30%;
+	background: rgba(191, 191, 208, 1);
+}
+
+.skillContainer {
+    display: block;
+    clear: both;
+    padding-bottom: 20px;
+}
+
+.skillBox {
+	position: relative;
+    float: left;
+    width: 140px;
+    height: 140px;
+    margin: 10px;
+    background-color: rgba(231, 233, 236, 1);
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.eventCounter {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	padding: 0.2rem;
+	background-color: rgba(120, 144, 156, 1);
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+}
+
+
+.SkillList {
+	width: 100%;
+	min-height: 100px;
+	margin-top: 5px;
+	padding: 5px;
+	overflow: auto;
+	background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.skillDisplay {
+	position: relative;
+	float: left;
+	margin: 5px 0px 0px 5px;
+	padding: 2px;
+	border: 1px solid;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.hintBox {
+	position: absolute;
+	z-index: 1;
+    min-width: 300px;
+	max-height: 180px;
+	overflow: auto;
+	background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(24, 163, 164, 1);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(24, 163, 164, 1);
+	box-shadow: 0px 0px 20px 0px rgba(24, 163, 164, 1);
+}
+
+.hintBox a {
+	display: block;
+	padding: 3%;
+	line-height: 40px;
+}
+
+.hintBox a:hover {
+	background-color: rgba(250, 250, 250, 1);
+}
+
+.hintBox::-webkit-scrollbar {
+    width: 12px;
+}
+
+.hintBox::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 5px;
+}
+
+.hintBox::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+div.thumbnailBox {
+	position: relative;
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin-right: 15px;
+}
+
+img.thumbnail {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.lone-message {
+	padding: 20px !important;
+	float: none !important; /* To make sure margin: auto works. */
+	margin: 50px auto;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+div.organisationLogo {
+	position: relative;
+	margin: 20px 0 20px 20px;
+	width: 200px;
+	height: 200px; /* change measurements under 1034px width. */
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1034px) {
+    div.organisationLogo {
+		position: relative;
+		margin: 20px auto;
+		width: 145px;
+		height: 145px; /* change measurements under 1034px width. */
+	}
+}
+
+img.organisationLogo {
+	position: absolute;
+	width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+button.organisationLogo {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background-color: rgba(113, 116, 120, 0.7);
+	color: rgba(255, 255, 255, 1);
+	cursor: pointer;
+	text-align: center;
+}
+
+button.organisationLogo:hover {
+    background-color: rgba(231, 48, 35, 0.7);
+}
+
+.orgBox {
+	height: 150px;
+	line-height: 150px;
+	margin: 10px 0;
+	background-color: rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(170,170,170,1);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(170,170,170,1);
+	box-shadow: 0px 0px 10px 0px rgba(170,170,170,1);
+}
+
+.orgBoxLogo {
+	position: relative;
+	float: left;
+	width: 35%;
+}
+
+.orgLogoDiv {
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+.orgBoxName {
+	position: relative;
+	float: left;
+	width: 65%;
+}
+
+.orgBoxName p {
+	font-size: 3rem;
+}
+
+div.orgLogo {
+	position: relative;
+	margin: 20px 0 20px 20px;
+	width: 150px;
+	height: 150px; /* change measurements under 1034px width. */
+}
+
+img.orgLogo {
+	position: absolute;
+	width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+	cursor: pointer;
+}
+
+p.orgLogo {
+	z-index: 1;
+	position: absolute;
+	top: -35%;
+	color: rgba(0, 0, 0, 1);
+	cursor: pointer;
+	text-align: center;
+}
+
+div.memberLargePic {
+	position: relative;
+	float: left;
+	margin: 2%;
+	width: 100px;
+	height: 151px;
+}
+
+div.memberLargePic p {
+	text-align: center;
+	font-size: 14px;
+}
+
+img.memberLargePic {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	bottom: 0;
+	left: 0;
+}
+
+div.sponsorLargeLogo {
+	position: relative;
+	display: inline-block;
+	margin: 2%;
+	width: 100px;
+	height: 140px;
+}
+
+img.sponsorLargeLogo {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	top: 0;
+	left: 0;
+}
+
+.rowDivider {
+	width: 100%;
+	margin: 2rem 0 0 0;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.menuDivider {
+	display: block;
+	width: 85%;
+	height: 1px;
+	margin-left: 7.5%;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+/* For the content sidebars. */
+.selectionDivider {
+	width: 100%;
+	height: 1px;
+	margin: 10px 0;
+	background-color: rgba(191, 191, 208, 0.3);
+}
+
+.adminEventOverview {
+	margin-top: 2rem;
+	padding: 1rem;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.8.  Buttons
+------------------------------------------------------------------------------ */
+
+button,
+input[type=submit] {
+    position: relative;
+    display: inline;
+    zoom: 1; *display: inline;
+	min-width: 100px;
+    padding: 15px 15px;
+    background-color: rgba(59, 161, 219, 1);
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 1);
+    outline: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1550px) {
+    button,
+	input[type=submit] {
+		min-width: 80px;
+		padding: 12px 12px;
+		font-size: 11px;
+	}
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    button,
+	input[type=submit] {
+		min-width: 60px;
+		padding: 10px 10px;
+		font-size: 10px;
+	}
+}
+
+button:hover,
+input[type=submit]:hover {
+    cursor:pointer;
+    background-color: rgba(231, 48, 35, 1);
+}
+
+.call-to-action {
+	min-width: 130px;
+    background-color: rgba(233, 72, 59, 1);
+    border: 1px solid rgba(233, 72, 59, 1);
+}
+
+.call-to-action:hover {
+    background-color: rgba(231, 48, 35, 1);
+	border-color: rgba(231, 48, 35, 1);
+}
+
+.call-to-action-neighbour {
+	min-width: 130px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.call-to-action-neighbour:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.drop-button {
+    height: 100%;
+    padding: 16px;
+    background-color: rgba(51, 51, 51, 1);
+    font-size: 16px;
+    border: none;
+}
+
+.transparent-button {
+    height: 100%;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 16px;
+	text-transform: none;
+    border: none;
+}
+
+.transparent-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.roleSelector-button {
+    height: 100%;
+    padding: 8px;
+	background-color: rgba(255, 255, 255, 1) !important; /* The !important overrides the ":hover" color change as well as the standard button background color. */
+    border: none;
+    color: rgba(0, 0, 0, 1);
+    font-size: 16px;
+    text-transform: none;
+}
+
+.roleSelectorIcon {
+	display: none;
+}
+
+.side-button {
+	display: block;
+	width: 100%;
+    margin: 5px auto;
+    padding-left: 20px;
+	background-color: rgba(51, 51, 51, 1);
+    color: rgba(231, 233, 236, 1);
+	text-align: left;
+}
+
+.side-button:hover {
+    cursor:pointer;
+    background-color: rgba(233, 72, 59, 1);
+}
+
+.side-button:active {
+    background-color: rgba(233, 72, 59, 1);
+}
+
+.active {
+    background-color: rgba(233, 72, 59, 1) !important;
+}
+
+.sponsorRemoveButton {
+	position: absolute !important;
+	width: 100% !important;
+	bottom: 0 !important;
+	padding: 5px !important;
+	background-color: rgba(139, 0, 0, 1) !important;
+}
+
+/*!
+* Waves v0.6.0
+* http://fian.my.id/Waves
+*
+* Copyright 2014 Alfiana E. Sibuea and other contributors
+* Released under the MIT license
+* https://github.com/fians/Waves/blob/master/LICENSE
+*/
+.waves-effect {
+	overflow: hidden;
+	vertical-align: middle;
+	z-index: 1;
+	transition: all 1s ease-out;
+}
+
+.waves-effect .waves-ripple {
+	position: absolute;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	margin-top: -10px;
+	margin-left: -10px;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.2);
+	transition: all 2s ease-out;
+	transition-property: opacity, -webkit-transform;µtransition-property: transform, opacity;
+	transition-property: transform, opacity, -webkit-transform;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	pointer-events: none;
+}
+
+/* Firefox Bug: link not triggered */
+.waves-effect .waves-ripple {
+	z-index: -1;
+}
+
+.button-overview {
+    width: 100%;
+    background-color: rgba(191, 191, 208, 1);
+    color: rgba(0, 0, 0, 1);
+	text-align: left;
+	font-size: 14px;
+    text-transform: none;
+}
+
+.button-overview:hover {
+    background-color: rgba(120, 144, 156, 1);
+}
+
+input[type=submit].subscribe-button:hover {
+    background-color: rgba(34, 139, 34, 1);
+}
+
+.subscribe-button:hover {
+    background-color: rgba(34, 139, 34, 1) !important;
+}
+
+.unsubscribe-button {
+	width: 100%;
+    background-color: rgba(139, 0, 0, 1);
+}
+
+.eventbox-button {
+    width: 100%;
+    background-color: rgba(191, 191, 208, 1);
+    color: rgba(0, 0, 0, 1);
+	text-align: center;
+	font-size: 14px;
+    text-transform: none;
+}
+
+.eventbox-button:hover {
+    background-color: rgba(120, 144, 156, 1);
+}
+
+.button-small {
+    float: right;
+    padding: 5px 10px;
+    background-color: rgba(191, 191, 208, 1);
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: 0px;
+    text-transform: none;
+}
+
+.button-small:hover {
+    background-color: rgba(120, 144, 156, 1);
+}
+
+.button-tiny {
+    min-width: 16px;
+	min-height: 15px;
+	line-height: 15px;
+	margin: 0 0 2px 10px;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 1);
+    text-transform: none;
+}
+
+.button-tiny:hover {
+    cursor: pointer;
+	background-color: rgba(139, 0, 0, 1);
+	color: rgba(255, 255, 255, 1);
+}
+
+
+/* -----------------------------------------------------------------------------
+1.9.  Form elements
+------------------------------------------------------------------------------*/
+
+/* Formatting of the div containing the labels and user inputs. */
+.userInput {
+	position: relative;
+	margin: 1rem 0 1rem 2rem;
+	padding-top: 1.2rem;
+}
+
+/* Formatting of the LABELS of the UNSELECTED user inputs. */
+.userInput label {
+	color: rgba(113, 116, 120, 1);
+	position: absolute;
+	top: 0rem;
+	left: 0rem;
+	font-size: 1rem;
+	cursor: text;
+	transition: .2s ease-out;
+}
+
+/* The follwing values place the label inside textboxes, so that it acts as a placeholder:
+
+input:not([type]) ~ label,
+input[type=text] ~ label,
+input[type=password] ~ label,
+input[type=email] ~ label,
+input[type=url] ~ label,
+input[type=tel] ~ label,
+input[type=number] ~ label,
+input[type=search] ~ label {
+	top: 1.2rem;
+	left: 1rem;
+	z-index: -1;
+} */
+
+select {
+	min-width: 150px;
+	height: 1.5rem;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(51, 51, 51, 1);
+	font-size: 1rem;
+	text-transform: none;
+	transition: all 0.3s;
+}
+
+select:focus {
+	outline: 2px solid rgba(24, 163, 164, 1);
+}
+
+select:focus:not([readonly]) ~ label {
+	color: rgba(24, 163, 164, 1);
+}
+
+select.valid,
+select:focus.valid {
+	outline: 2px solid rgba(34, 139, 34, 1);
+	border-bottom: 1px solid rgba(34, 139, 34, 1);
+}
+
+select.valid ~ label,
+select:focus.valid ~ label {
+	color: rgba(34, 139, 34, 1);
+}
+
+select.invalid,
+select:focus.invalid {
+	outline: 2px solid rgba(204, 0, 0, 1);
+	border-bottom: 1px solid rgba(204, 0, 0, 1);
+}
+
+select.invalid ~ label,
+select:focus.invalid ~ label {
+	color: rgba(204, 0, 0, 1);
+}
+
+input[type=checkbox] {
+	-ms-transform: scale(1.3); /* IE */
+	-moz-transform: scale(1.3); /* FF */
+	-webkit-transform: scale(1.3); /* Safari and Chrome */
+	-o-transform: scale(1.3); /* Opera */
+	padding-bottom: 10px;
+}
+
+.userInput input[type=checkbox] {
+	margin-bottom: 25px;
+}
+
+.checkboxtext {
+	font-size: 1.1rem;
+	margin-left: 0.5rem;
+}
+
+/* Formatting of the placeholder color. */
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+	color: rgba(191, 191, 208, 1);
+}
+
+textarea {
+	resize: none;
+}
+
+/* Formatting of the UNSELECTED input boxes. */
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=number],
+input[type=search] {
+	height: 1.5rem;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(51, 51, 51, 1);
+	outline: none;
+	font-size: 1rem;
+	transition: all 0.3s;
+}
+
+/* Formatting of the SELECTED input boxes. */
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea:focus:not([readonly]) {
+	border-bottom: 1px solid rgba(24, 163, 164, 1);
+	box-shadow: 0 1px 0 0 rgba(24, 163, 164, 1);
+}
+
+/* Formatting of the LABELS of the SELECTED input boxes. */
+input:not([type]):focus:not([readonly]) ~ label,
+input[type=text]:focus:not([readonly]) ~ label,
+input[type=password]:focus:not([readonly]) ~ label,
+input[type=email]:focus:not([readonly]) ~ label,
+input[type=url]:focus:not([readonly]) ~ label,
+input[type=tel]:focus:not([readonly]) ~ label,
+input[type=number]:focus:not([readonly]) ~ label,
+input[type=search]:focus:not([readonly]) ~ label,
+textarea:focus:not([readonly]) ~ label {
+	color: rgba(24, 163, 164, 1);
+	/* The following values are set to transition the labels inside text boxes from being a placeholder to being a label:
+	top: 0;
+	left: 0; */
+}
+
+/* Formatting of the VALID input boxes. */
+input:not([type]).valid,
+input:not([type]):focus.valid,
+input[type=text].valid,
+input[type=text]:focus.valid,
+input[type=password].valid,
+input[type=password]:focus.valid,
+input[type=email].valid,
+input[type=email]:focus.valid,
+input[type=url].valid,
+input[type=url]:focus.valid,
+input[type=tel].valid,
+input[type=tel]:focus.valid,
+input[type=number].valid,
+input[type=number]:focus.valid,
+input[type=search].valid,
+input[type=search]:focus.valid,
+textarea.valid,
+textarea:focus.valid {
+	border-bottom: 1px solid rgba(34, 139, 34, 1);
+	box-shadow: 0 1px 0 0 rgba(34, 139, 34, 1);
+}
+
+/* Formatting of the LABELS of the VALID input boxes. */
+input:not([type]).valid ~ label,
+input:not([type]):focus.valid ~ label,
+input[type=text].valid ~ label,
+input[type=text]:focus.valid ~ label,
+input[type=password].valid ~ label,
+input[type=password]:focus.valid ~ label,
+input[type=email].valid ~ label,
+input[type=email]:focus.valid ~ label,
+input[type=url].valid ~ label,
+input[type=url]:focus.valid ~ label,
+input[type=tel].valid ~ label,
+input[type=tel]:focus.valid ~ label,
+input[type=number].valid ~ label,
+input[type=number]:focus.valid ~ label,
+input[type=search].valid ~ label,
+input[type=search]:focus.valid ~ label,
+textarea.valid ~ label,
+textarea:focus.valid ~ label {
+	color: rgba(34, 139, 34, 1);
+}
+
+/* Formatting of the INVALID input boxes. */
+input:not([type]).invalid, input:not([type]):focus.invalid,
+input[type=text].invalid,
+input[type=text]:focus.invalid,
+input[type=password].invalid,
+input[type=password]:focus.invalid,
+input[type=email].invalid,
+input[type=email]:focus.invalid,
+input[type=url].invalid,
+input[type=url]:focus.invalid,
+input[type=tel].invalid,
+input[type=tel]:focus.invalid,
+input[type=number].invalid,
+input[type=number]:focus.invalid,
+input[type=search].invalid,
+input[type=search]:focus.invalid,
+textarea.invalid,
+textarea:focus.invalid {
+	border-bottom: 1px solid rgba(204, 0, 0, 1);
+	box-shadow: 0 1px 0 0 rgba(204, 0, 0, 1);
+}
+
+/* Formatting of the LABELS of the INVALID input boxes. */
+input:not([type]).invalid ~ label,
+input:not([type]):focus.invalid ~ label,
+input[type=text].invalid ~ label,
+input[type=text]:focus.invalid ~ label,
+input[type=password].invalid ~ label,
+input[type=password]:focus.invalid ~ label,
+input[type=email].invalid ~ label,
+input[type=email]:focus.invalid ~ label,
+input[type=url].invalid ~ label,
+input[type=url]:focus.invalid ~ label,
+input[type=tel].invalid ~ label,
+input[type=tel]:focus.invalid ~ label,
+input[type=number].invalid ~ label,
+input[type=number]:focus.invalid ~ label,
+input[type=search].invalid ~ label,
+input[type=search]:focus.invalid ~ label,
+textarea.invalid ~ label,
+textarea:focus.invalid ~ label {
+	color: rgba(204, 0, 0, 1);
+}
+
+div.ui-datepicker{
+	font-size: 12px;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.10. Messages and text links
+------------------------------------------------------------------------------ */
+
+.lightWatermark {
+	color: rgba(231, 233, 236, 1);
+	text-align: center;
+	font-size: 30px;
+	padding: 50px 0 50px 0;
+}
+
+.darkWatermark {
+	color: rgba(120, 144, 156, 1);
+	text-align: center;
+	font-size: 30px;
+	padding: 50px 0 50px 0;
+}
+
+.success {
+	color: rgba(34, 139, 34, 1);
+}
+
+.error {
+    color: rgba(204, 0, 0, 1);
+}
+
+.error.fade {
+	-webkit-animation-name: fade;
+    -webkit-animation-iteration-count: once;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-duration: 5s;
+	-webkit-animation-fill-mode: forwards;
+    animation-name: fade;
+    animation-iteration-count: once;
+    animation-timing-function: ease-out;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes fade {
+    0% {color: rgba(204, 0, 0, 1);}
+    100% {color: rgba(231, 233, 236, 0);}
+}
+
+@-webkit-keyframes fade {
+    0% {color: rgba(204, 0, 0, 1);}
+    100% {color: rgba(231, 233, 236, 0);}
+}
+
+@-moz-keyframes fade {
+    0% {color: rgba(204, 0, 0, 1);}
+    100% {color: rgba(231, 233, 236, 0);}
+}
+
+.instructionTitle {
+	margin: 5px 0 3px 0;
+    font-size: 14px;
+}
+
+.charCountDown {
+	margin-left: 275px;
+	font-size: 11px;
+	color: rgba(113, 116, 120, 1);
+}
+
+.textLink,
+.textLink:visited {
+	text-decoration: underline;
+}
+
+.textLink:hover {
+	text-decoration: underline;
+    color: rgba(59, 161, 219, 1) !important;
+}
+
+.tickBoxText {
+	font-size: 14px;
+}
+
+
+/* ------------------------------------------------------------------------------
+1.11. Tables
+------------------------------------------------------------------------------ */
+
+.SBtable {
+	display: table;
+	width: 100%;
+	margin-bottom: 20px;
+	border: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 5px 5px 0px rgba(0,0,0,0.75);
+	border-collapse: separate; /* In order to have a box shadow on tables in IE and Edge. */
+}
+
+.SBtable thead {
+	border-bottom: 1px solid black;
+}
+
+.SBtable td, th {
+	padding: 15px 5px;
+	display: table-cell;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.SBtable > tbody > tr:nth-child(odd) {
+	background-color: rgba(191, 191, 208, 1);
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------
+2. Tablet design
+------------------------------------------------------------------------------ */
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+	[class*="col-"] {
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+	
+	/* --------------------------------------------------------------------------
+	2.1.  General tags
+	-------------------------------------------------------------------------- */
+	
+	h1 {
+		font-size: 25px;
+	}
+
+	h2 {
+		font-size: 16px;
+	}
+
+	p {
+		font-size: 18px;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	2.2.  Home page
+	-------------------------------------------------------------------------- */
+	
+	.homepageTitle {
+		top: 10%;
+		font-size: 35px;
+	}
+
+	.homepageSubTitle {
+		font-size: 21px;
+		letter-spacing: 0;
+		top: 30%;
+	}
+	
+	@media only screen and (min-width: 700px) {
+		.homepageTitle {
+			font-size: 40px;
+		}
+		
+		.homepageSubTitle {
+			font-size: 24px;
+		}
+	}
+	
+	.organiserRow {
+		display: -moz-box;		/* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;	/* TWEENER - IE 10 */
+		display: -webkit-flex;	/* Chrome & Safari */
+		display: flex;
+		flex-direction: column;
+	}
+
+	.homeVideo {
+		width: 80%;
+		margin: 25px 0 0 10%;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	2.3.  Main dashboard elements
+	-------------------------------------------------------------------------- */
+	
+	div.left-sidebar {
+		display: none;
+		width: 30%;
+		z-index: 2;
+	}
+	
+	@media only screen and (max-width: 710px) {
+		
+		p.userName {
+			font-size: 18px;
+		}
+		
+		div.profilePicture {
+			width: 145px;
+			height: 145px;
+		}
+	}
+	
+	div.middle-column {
+		margin-left: 0%;
+	}
+	
+	div.navigation {
+		width: 100%; /* width has to be set, since fixed elements are anchored to the browser window, not to their parent elements. So it doesn't adopt any width automatically and when set will be in proportion towards the window. */
+	}
+	
+	div.roleSelect {
+		width: 70%;
+	}
+	
+	button.roleSelector-button {
+		display: block;
+	}
+	
+	.roleSelectorIcon {
+		display: none;
+	}
+	
+	img.menuBars {
+		display: block;
+		margin: -5px 10px 0 0;
+		cursor: pointer;
+	}
+	
+	div.management-box {
+		width: 30%;
+	}
+	
+	.notification-dropdown-content {
+		left: -200px;
+	}
+	
+	.notification-dropdown-content:before {
+		left: 195px;
+	}
+	
+	.setting-dropdown-content {
+		left: -200px;
+	}
+
+	.setting-dropdown-content:before {
+		left: 230px;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	2.4.  Other special div tags
+	-------------------------------------------------------------------------- */
+	
+	div.sidebarContent {
+		width: 80% !important;
+		float: left;
+	}
+	
+	div.contentSidebar {
+		width: 20% !important;
+		float: left;
+		
+	}
+	
+	.skillBox {
+		width: 98px;
+		height: 98px;
+	}
+	
+	.skillBox p {
+		font-size: 0.8rem;
+	}
+	
+	.eventCounter {
+		font-size: 0.8rem;
+	}
+	
+	.tickBoxText {
+		font-size: 12px;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	2.5.  Event information overview box
+	-------------------------------------------------------------------------- */
+	
+	.masonry {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+		column-gap: 1rem;
+		padding-right: 1rem;
+	}
+	
+	@media only screen and (max-width: 700px) {
+		.eventBox p.title {
+			font-size: 1rem;
+		}
+
+		.eventBox p.type {
+			font-size: 0.8rem;
+		}
+
+		.eventBox div.logoBox {
+			width: 70px;
+			height: 70px;
+		}
+
+		.eventBox p.organiser {
+			font-size: 1rem;
+		}
+
+		.eventBox div.skillsBox p.skillAnnounce {
+			font-size: 1rem;
+		}
+		
+		.eventBox div.skillsBox p.skill {
+			font-size: 0.8rem;
+			letter-spacing: 0;
+		}
+
+		.attendingBox {
+			font-size: 0.7rem;
+			letter-spacing: 0;
+		}
+		
+		.eventBox div.ratingRow p {
+			font-size: 0.8rem;
+		}
+		
+		.eventBox div.descriptionRow p {
+			font-size: 0.8rem;
+		}
+
+		.eventBox div.timeRow p {
+			font-size:  0.8rem;
+		}
+		
+		.eventBox div.addressBox p {
+			font-size: 0.8rem;
+		}
+
+		.eventBox div.sponsorsRow p {
+			font-size: 0.8rem;
+		}
+		
+		div.sponsorSmallLogo {
+			width: 43px;
+			height: 43px;
+		}
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	2.6.  Buttons
+	-------------------------------------------------------------------------- */
+	
+	button,
+	input[type=submit] {
+		min-width: 50px;
+		padding: 10px 10px;
+		font-size: 10px;
+	}
+	
+	@media only screen and (max-width: 790px) {
+		button,
+		input[type=submit] {
+			min-width: 60px;
+			padding: 10px 5px;
+			font-size: 7px;
+		}
+	}
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------
+3. Smart phone design
+------------------------------------------------------------------------------ */
+
+@media only screen and (max-width: 600px) {
+    [class*="col-"] {
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+	
+	/* --------------------------------------------------------------------------
+	3.1.  General tags
+	-------------------------------------------------------------------------- */
+	
+	h1 {
+		font-size: 18px;
+	}
+
+	h2 {
+		font-size: 16px;
+	}
+
+	p {
+		font-size: 12px;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	3.2.  Home page
+	-------------------------------------------------------------------------- */
+	
+	.homepageTitle {
+		top: 10%;
+		font-size: 19px;
+		letter-spacing: 0;
+	}
+	
+	.homepageSubTitle {
+		font-size: 11px;
+		letter-spacing: 0;
+		top: 25%;
+	}
+	
+	@media only screen and (min-width: 250px) {
+		.homepageTitle {
+			font-size: 22px;
+		}
+
+		.homepageSubTitle {
+			font-size: 12px;
+			top: 28%;
+		}
+	}
+	
+	@media only screen and (min-width: 300px) {
+		.homepageTitle {
+			font-size: 24px;
+		}
+
+		.homepageSubTitle {
+			font-size: 14px;
+			top: 28%;
+		}
+	}
+	
+	@media only screen and (min-width: 400px) {
+		.homepageTitle {
+			font-size: 30px;
+		}
+
+		.homepageSubTitle {
+			font-size: 16px;
+		}
+	}
+	
+	@media only screen and (min-width: 500px) {
+		.homepageTitle {
+			font-size: 35px;
+		}
+
+		.homepageSubTitle {
+			font-size: 19px;
+		}
+	}
+	
+	.organiserRow {
+		display: -moz-box;		/* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;	/* TWEENER - IE 10 */
+		display: -webkit-flex;	/* Chrome & Safari */
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.valuePropositionBox {
+		height: 530px;
+	}
+	
+	.valuePropositionTitle {
+		font-size: 16px;
+		margin: 10% 0 15% 0;
+	}
+	
+	@media only screen and (min-width: 480px) {
+		.valuePropositionTitle {
+			margin: 10% 0 10% 0;
+		}
+	}
+	
+	.valuePropositionRow {
+		height: 200px;
+		display: -moz-box;		/* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;	/* TWEENER - IE 10 */
+		display: -webkit-flex;	/* Chrome & Safari */
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.valuePropSubRow {
+		width: 100%;
+		height: 100px;
+	}
+	
+	@media only screen and (min-width: 480px) {
+		.homePageIconCol {
+			width: 25%;
+		}
+	}
+	
+	.homePageIconFrame {
+		width: 50px;
+		height: 50px;
+		top: 0;
+		left: 10%;
+	}
+	
+	@media only screen and (min-width: 300px) {
+		.homePageIconFrame {
+			width: 50px;
+			height: 50px;
+			top: 0;
+			left: 20%;
+		}
+	}
+	
+	.homePageTextCol {
+		width: 60%;
+		margin-left: 5%;
+	}
+	
+	@media only screen and (min-width: 300px) {
+		.homePageTextCol {
+			width: 65%;
+			margin-left: 0;
+		}
+	}
+	
+	@media only screen and (min-width: 480px) {
+		.homePageTextCol {
+			width: 75%;
+		}
+	}
+	
+	.homeIconTextFrame {
+		height: 50px;
+	}
+	
+	.homeIconTextDiv {
+		height: 50px;
+	}
+	
+	@media only screen and (min-width: 250px) {
+		.homeIconTextDiv p {
+			font-size: 14px;
+		}
+	}
+	
+	@media only screen and (min-width: 300px) {
+		.homeIconTextDiv p {
+			font-size: 16px;
+		}
+	}
+	
+	@media only screen and (min-width: 480px) {
+		.homeIconTextDiv p {
+			font-size: 18px;
+		}
+	}
+	
+	.callToActionBox {
+		height: 250px;
+	}
+	
+	.callToActionImg {
+		width: 90px;
+		height: auto;
+	}
+
+	.homeVideo {
+		width: 80%;
+		margin: 0 0 0 10%;
+	}
+	
+	.videoRow {
+		margin-bottom: 50px;
+	}
+	
+	/* The blue bands on the partner div tag are made with the before and after pseude selectors. */
+	.partners:before,
+	.partners:after {
+		height: 60px;
+	}
+	
+	.partners p {
+		font-size: 16px;
+		margin-top: 5px;
+		margin-bottom: 25px;
+	}
+	
+	.partnerLogoContainer {
+		margin: 0 auto;
+	}
+	
+	.partnerLogo {
+		width: 50px;
+		height: 50px;
+	}
+	
+	.partnerLogoFrame {
+		height: 50px;
+	}
+	
+	.partnerLogo a {
+		height: 50px;
+	}
+	
+	.partnerLogo img {
+		max-width: 50px;
+		max-height: 50px;
+	}
+	
+	/* The blue bands on the partner div tag are made with the before and after pseude selectors. */
+	.inMedia:before {
+		height: 30px;
+	}
+	
+	.inMedia p {
+		margin-top: -30px;
+		font-size: 16px;
+	}
+	
+	@media only screen and (min-width: 480px) {
+		.inMedia p {
+			margin-top: -25px;
+		}
+	}
+	
+	.inMediaLogoContainer {
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+	/* --------------------------------------------------------------------------
+	3.3.  Main dashboard elements
+	-------------------------------------------------------------------------- */
+	
+	div.left-sidebar {
+		display: none;
+		width: 100%;
+		z-index: 2;
+	}
+	
+	div.sbLogoContainer {
+		position: relative;
+		float: left;
+		margin: 8px 0 0 10px;
+		width: 110px;
+		height: 47px;
+	}
+	
+	.sideBarHider {
+		display: block;
+		float: right;
+		width: 40px;
+		margin: 12px 10px 0 0;
+		cursor: pointer;
+	}
+	
+	p.userName {
+		font-size: 16px;
+	}
+	
+	div.profilePicture {
+		position: relative;
+		margin: 0.5rem auto 20px auto;
+		width: 150px;
+		height: 150px;
+	}
+	
+	button.profilePicture {
+		font-size: 10px;
+	}
+	
+	button.profilePicture:hover {
+		background-color: rgba(231, 48, 35, 0.7);
+	}
+	
+	div.middle-column {
+		margin-left: 0%;
+	}
+	
+	div.navigation {
+		width: 100%; /* width has to be set, since fixed elements are anchored to the browser window, not to their parent elements. So it doesn't adopt any width automatically and when set will be in proportion towards the window. */
+	}
+	
+	div.roleSelect {
+		width: 60%;
+	}
+	
+	img.menuBars {
+		display: block;
+		width: 40px;
+		margin: 0px 10px 0 0;
+		cursor: pointer;
+	}
+	
+	button.roleSelector-button {
+		display: none;
+	}
+	
+	.roleSelectorIcon {
+		margin: 5px 0 0 0;
+		display: block;
+		cursor: pointer;
+	}
+	
+	.dropdown:hover #roleList {
+		display: none;
+	}
+	
+	#roleList {
+		position: fixed;
+		min-width: inherit;
+		top: 70px;
+		left: 0;
+		right: 0;
+	}
+	
+	#roleList:before {
+		content:'';
+		position: absolute;
+		top: -10px;
+		left: 56px;
+		width: 0;
+		height: 0;
+		border-left: solid 10px transparent;
+		border-right: solid 10px transparent;
+		border-bottom: solid 10px rgba(191, 191, 208, 1);
+	}
+	
+	div.management-box {
+		width: 40%;
+	}
+	
+	.notification-dropdown-content {
+		position: fixed;
+		min-width: inherit;
+		top: 70px;
+		left: 0;
+		right: 0;
+	}
+	
+	.notification-dropdown-content:before {
+		left: calc(60% - 5px);
+	}
+	
+	.setting-dropdown-content {
+		position: fixed;
+		min-width: inherit;
+		top: 70px;
+		left: 0;
+		right: 0;
+	}
+
+	.setting-dropdown-content:before {
+		left: calc(60% + 30px);
+	}
+	
+	.mobileFlex {
+		display: -moz-box;		/* OLD - Firefox 19- (buggy but mostly works) */
+		display: -ms-flexbox;	/* TWEENER - IE 10 */
+		display: -webkit-flex;	/* Chrome & Safari */
+		display: flex;
+		flex-direction: column;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	3.4.  Other special div tags
+	-------------------------------------------------------------------------- */
+	
+	.microdegree-two-col .col1 {
+		width: 100%;
+		background: rgba(191, 191, 208, 1);
+	}
+	
+	.microdegree-two-col .col2 {
+		width: 100%;
+		padding: 0 20px 0 20px;
+		background: rgba(255, 255, 255, 1);
+	}
+	
+	.microdegree-two-col:before,
+	.microdegree-two-col:after {
+		display: none;
+	}
+	
+	img.microdegree {
+		width: 15px;
+	}
+	
+	.skillBox {
+		width: 98px;
+		height: 98px;
+	}
+	
+	.skillBox p {
+		font-size: 0.8rem;
+	}
+	
+	.eventCounter {
+		font-size: 0.8rem;
+	}
+	
+	.orgBox {
+		height: 75px;
+		line-height: 75px;
+		margin: 10px 0;
+	}
+	
+	.orgBoxLogo {
+		position: relative;
+		float: left;
+		width: 35%;
+	}
+
+	.orgLogoDiv {
+		position: relative;
+		margin: 12.5px auto 0 auto;
+		width: 50px;
+		height: 50px;
+	}
+
+	.orgBoxName {
+		position: relative;
+		float: left;
+		width: 65%;
+	}
+	
+	.orgBoxName p {
+		font-size: 1rem;
+	}
+	
+	img.orgLogo {
+		position: absolute;
+		width: 90%;
+		height: 90%;
+		top: 5%;
+		left: 5%;
+		cursor: pointer;
+	}
+	
+	div.organisationLogo {
+		position: relative;
+		margin: 20px auto;
+		width: 145px;
+		height: 145px;
+	}
+	
+	.tickBoxText {
+		font-size: 10px;
+	}
+	
+	@media only screen and (min-width: 300px) {
+		.tickBoxText {
+			font-size: 12px;
+		}
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	3.5.  Event information overview box
+	-------------------------------------------------------------------------- */
+	
+	.masonry {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+		column-gap: 1rem;
+		padding-right: 0;
+	}
+	
+	@media only screen and (min-width: 500px) {
+		.masonry {
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			column-count: 2;
+			column-gap: 1rem;
+			padding-right: 1rem;
+		}
+	}
+	
+	.eventBox p.title {
+		font-size: 1rem;
+	}
+	
+	.eventBox p.type {
+		font-size: 0.8rem;
+	}
+	
+	.eventBox div.logoBox {
+		width: 50px;
+		height: 50px;
+	}
+	
+	.eventBox p.organiser {
+		font-size: 1rem;
+	}
+	
+	.eventBox div.skillsBox p.skillAnnounce {
+		font-size: 1rem;
+	}
+	
+	.eventBox div.skillsBox p.skill {
+		font-size: 0.8rem;
+		letter-spacing: 0;
+	}
+	
+	.attendingBox {
+		font-size: 0.7rem;
+		letter-spacing: 0;
+	}
+	
+	.eventBox div.ratingRow p {
+		font-size: 0.8rem;
+	}
+	
+	.eventBox div.descriptionRow p {
+		font-size: 0.8rem;
+	}
+	
+	.eventBox div.timeRow p {
+		font-size:  0.8rem;
+	}
+	
+	.eventBox div.addressBox p {
+		font-size: 0.8rem;
+	}
+	
+	.eventBox div.sponsorsRow p {
+		font-size: 0.8rem;
+	}
+	
+	div.sponsorSmallLogo {
+		width: 43px;
+		height: 43px;
+	}
+	
+	@media only screen and (max-width: 300px) {
+		.eventBox p.title {
+			font-size: 0.9rem;
+		}
+		
+		.eventBox p.type {
+			font-size: 0.8rem;
+		}
+		
+		.eventBox div.logoBox {
+			width: 50px;
+			height: 50px;
+		}
+		
+		.eventBox p.organiser {
+			font-size: 0.9rem;
+		}
+		
+		.eventBox div.skillsBox p.skillAnnounce {
+			font-size: 0.8rem;
+		}
+		
+		.eventBox div.skillsBox p.skill {
+			font-size: 0.8rem;
+			letter-spacing: 0;
+		}
+		
+		.attendingBox {
+			font-size: 0.6rem;
+			letter-spacing: 0;
+		}
+		
+		.eventBox div.ratingRow p {
+			font-size: 0.7rem;
+		}
+		
+		.eventBox div.descriptionRow p {
+			font-size: 0.7rem;
+		}
+		
+		.eventBox div.timeRow p {
+			font-size:  0.7rem;
+		}
+		
+		.eventBox div.addressBox p {
+			font-size: 0.7rem;
+		}
+		
+		.eventBox div.sponsorsRow p {
+			font-size: 0.7rem;
+		}
+		
+		div.sponsorSmallLogo {
+			width: 25px;
+			height: 25px;
+		}
+		
+		.eventbox-button {
+			font-size: 0.8rem;
+		}
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	3.6.  Buttons
+	-------------------------------------------------------------------------- */
+	
+	.transparent-button {
+		min-width: inherit;
+		padding: 0 8px;
+		font-size: 8px;
+		letter-spacing: 0;
+	}
+	
+	.call-to-action {
+		min-width: 90px;
+		padding: 6px;
+		font-size: 12px;
+	}
+
+	.call-to-action-neighbour {
+		min-width: 90px;
+		padding: 6px;
+		font-size: 12px;
+	}
+	
+	button,
+	input[type=submit] {
+		padding: 10px 10px;
+		font-size: 10px;
+	}
+	
+	
+	/* --------------------------------------------------------------------------
+	3.6.  Form Elements
+	-------------------------------------------------------------------------- */
+	
+	/* Formatting of the div containing the labels and user inputs. */
+	.userInput {
+		margin: 1rem 0 1rem 0.5rem;
+		padding-top: 1.7rem;
+	}
+
+	/* Formatting of the LABELS of the UNSELECTED user inputs. */
+	.userInput label {
+		font-size: 0.7rem;
+	}
+
+	input[type=checkbox] {
+		-ms-transform: scale(1); /* IE */
+		-moz-transform: scale(1); /* FF */
+		-webkit-transform: scale(1); /* Safari and Chrome */
+		-o-transform: scale(1); /* Opera */
+		padding-bottom: 0;
+	}
+
+	.userInput input[type=checkbox] {
+		margin-bottom: auto;
+	}
+
+	.checkboxtext {
+		font-size: 1rem;
+		margin-left: 0.5rem;
+	}
+	
+	textarea {
+		max-width: 170px;
+	}
+
+	/* Formatting of the UNSELECTED input boxes. */
+	input:not([type]),
+	input[type=text],
+	input[type=password],
+	input[type=email],
+	input[type=url],
+	input[type=tel],
+	input[type=number],
+	input[type=search] {
+		height: 1.5rem;
+		font-size: 1rem;
+	}
+	
+	div.ui-datepicker{
+		font-size: 0.5rem;
+	}
+	
+	
+}
